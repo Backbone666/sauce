@@ -2,7 +2,7 @@
     "name": "sauce",
     "description": "Modifcation of the default theme for Ghost for ACGK",
     "demo": "https://acountrygirlskitchen.com/",
-    "version": "1.2.3",
+    "version": "1.3.0",
     "engines": {
         "ghost": ">=5.0.0"
     },
