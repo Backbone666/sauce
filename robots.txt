@@ -1,0 +1,26 @@
+#Ghost
+User-agent: *
+Sitemap: https://acountrygirlskitchen.com/sitemap.xml
+Disallow: /ghost/
+Disallow: /p/
+Disallow: /email/
+Disallow: /r/
+
+#Blocking OpenAI
+User-agent: GPTBot
+Disallow: /
+User-agent: ChatGPT-User
+Disallow: /
+
+#Blocking Google AI
+User-agent: Google-Extended
+Disallow: /
+
+#Blocking commoncrawl
+User-agent: CCBot
+Disallow: /User-agent: *
+Sitemap: https://acountrygirlskitchen.com/sitemap.xml
+Disallow: /ghost/
+Disallow: /p/
+Disallow: /email/
+Disallow: /r/
