@@ -5,51 +5,40 @@ function lightbox(trigger) {
         var items = [];
         var index = 0;
 
-        var prevSibling = e.target.closest('.kg-card').previousElementSibling;
+        var currentCard = e.target.closest('.kg-card');
+        if (!currentCard) return;
+        var cards = [];
+        var prevSibling = currentCard.previousElementSibling;
 
         while (prevSibling && (prevSibling.classList.contains('kg-image-card') || prevSibling.classList.contains('kg-gallery-card'))) {
-            var prevItems = [];
-
-            prevSibling.querySelectorAll('img').forEach(function (item) {
-                prevItems.push({
-                    src: item.getAttribute('src'),
-                    msrc: item.getAttribute('src'),
-                    w: item.getAttribute('width'),
-                    h: item.getAttribute('height'),
-                    el: item,
-                })
-
-                index += 1;
-            });
+            cards.push(prevSibling);
             prevSibling = prevSibling.previousElementSibling;
-
-            items = prevItems.concat(items);
         }
 
-        if (e.target.classList.contains('kg-image')) {
-            items.push({
-                src: e.target.getAttribute('src'),
-                msrc: e.target.getAttribute('src'),
-                w: e.target.getAttribute('width'),
-                h: e.target.getAttribute('height'),
-                el: e.target,
-            });
-        } else {
-            var reachedCurrentItem = false;
+        cards.reverse();
+        cards.push(currentCard);
 
-            e.target.closest('.kg-gallery-card').querySelectorAll('img').forEach(function (item) {
+        var nextSibling = currentCard.nextElementSibling;
+
+        while (nextSibling && (nextSibling.classList.contains('kg-image-card') || nextSibling.classList.contains('kg-gallery-card'))) {
+            cards.push(nextSibling);
+            nextSibling = nextSibling.nextElementSibling;
+        }
+
+        cards.forEach(function (card) {
+            var imgs = card.getElementsByTagName('img');
+
+            for (var i = 0; i < imgs.length; i++) {
                 items.push({
-                    src: item.getAttribute('src'),
-                    msrc: item.getAttribute('src'),
-                    w: item.getAttribute('width'),
-                    h: item.getAttribute('height'),
-                    el: item,
+                    src: imgs[i].src,
+                    msrc: imgs[i].src,
+                    w: parseInt(imgs[i].getAttribute('width'), 10) || 0,
+                    h: parseInt(imgs[i].getAttribute('height'), 10) || 0,
+                    el: imgs[i],
                 });
 
-                if (!reachedCurrentItem && item !== e.target) {
-                    index += 1;
-                } else {
-                    reachedCurrentItem = true;
+                if (imgs[i] === e.target) {
+                    index = items.length - 1;
                 }
             });
         }
