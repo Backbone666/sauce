@@ -30,10 +30,10 @@ function lightbox(trigger) {
 
             for (var i = 0; i < imgs.length; i++) {
                 items.push({
-                    src: imgs[i].getAttribute('src'),
-                    msrc: imgs[i].getAttribute('src'),
-                    w: imgs[i].getAttribute('width'),
-                    h: imgs[i].getAttribute('height'),
+                    src: imgs[i].src,
+                    msrc: imgs[i].src,
+                    w: parseInt(imgs[i].getAttribute('width'), 10) || 0,
+                    h: parseInt(imgs[i].getAttribute('height'), 10) || 0,
                     el: imgs[i],
                 });
 
