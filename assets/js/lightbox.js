@@ -6,6 +6,7 @@ function lightbox(trigger) {
         var index = 0;
 
         var currentCard = e.target.closest('.kg-card');
+        if (!currentCard) return;
         var cards = [];
         var prevSibling = currentCard.previousElementSibling;
 
