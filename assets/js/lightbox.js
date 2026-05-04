@@ -40,8 +40,23 @@ function lightbox(trigger) {
                 if (imgs[i] === e.target) {
                     index = items.length - 1;
                 }
-            }
-        });
+            });
+        }
+
+        let nextSibling = e.target.closest('.kg-card')?.nextElementSibling;
+
+        while (nextSibling && (nextSibling.classList.contains('kg-image-card') || nextSibling.classList.contains('kg-gallery-card'))) {
+            nextSibling.querySelectorAll('img').forEach(function (item) {
+                items.push({
+                    src: item.getAttribute('src'),
+                    msrc: item.getAttribute('src'),
+                    w: item.getAttribute('width'),
+                    h: item.getAttribute('height'),
+                    el: item,
+                })
+            });
+            nextSibling = nextSibling.nextElementSibling;
+        }
 
         var pswpElement = document.querySelectorAll('.pswp')[0];
 
