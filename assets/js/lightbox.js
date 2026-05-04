@@ -54,7 +54,7 @@ function lightbox(trigger) {
             });
         }
 
-        let nextSibling = e.target.closest('.kg-card').nextElementSibling;
+        let nextSibling = e.target.closest('.kg-card')?.nextElementSibling;
 
         while (nextSibling && (nextSibling.classList.contains('kg-image-card') || nextSibling.classList.contains('kg-gallery-card'))) {
             nextSibling.querySelectorAll('img').forEach(function (item) {
